@@ -21,4 +21,14 @@ public enum ColorEnum {
 
     public Color get() { return mainColor; }
     public Color getDimmed() { return dimmedColor; }
+
+    public static ColorEnum getColor(Color color) {
+        for (ColorEnum c : ColorEnum.values()) {
+            if (c.mainColor.equals(color) || c.dimmedColor.equals(color)) {
+                return c;
+            }
+        }
+
+        return null;
+    }
 }

@@ -37,10 +37,13 @@ public class MapTileManager {
         }
     }
 
+    private static final String InitialColorPropertyName = "InitialColor";
     private static final String RoomTypeToColorPropertyName = "RoomTypeToColor";
 
+    private static ColorEnum initialColor = ColorEnum.RED;
+
     private static HashMap<MapRoomNode, MapTileMapObject> tracked = new HashMap<>();
-    private static HashMap<RoomType, Color> defaultRoomTypeToColor = new HashMap<>();
+    private static HashMap<RoomType, ColorEnum> defaultRoomTypeToColor = new HashMap<>();
 
     // TODO: lists for each type, to make accessing all of them of a particular type instant (e.g. using the legend)
 
@@ -244,8 +247,8 @@ public class MapTileManager {
             if (inboundsMapTileMapObject.isHighlighted != val) {
                 inboundsMapTileMapObject.isHighlighted = val;
 
-                inboundsMapTileMapObject.smallTile.setBaseColor(highlightingColor);
-                inboundsMapTileMapObject.largeTile.setBaseColor(highlightingColor);
+                inboundsMapTileMapObject.smallTile.setBaseColor(highlightingColor.get());
+                inboundsMapTileMapObject.largeTile.setBaseColor(highlightingColor.get());
 
                 SoundHelper.playMapScratchSound();
             }
@@ -253,8 +256,8 @@ public class MapTileManager {
             // TODO: config option? [enable instant repaint]
             else if (val && isARepaint()) {
                 //else if (val && inbounds.tile.getBaseColor() != highlightingColor) {
-                inboundsMapTileMapObject.smallTile.setBaseColor(highlightingColor);
-                inboundsMapTileMapObject.largeTile.setBaseColor(highlightingColor);
+                inboundsMapTileMapObject.smallTile.setBaseColor(highlightingColor.get());
+                inboundsMapTileMapObject.largeTile.setBaseColor(highlightingColor.get());
 
                 SoundHelper.playMapScratchSound();
             }
@@ -267,15 +270,19 @@ public class MapTileManager {
     public static boolean isARepaint() {
         // TODO: verify that only the small tile is needed here
         if (inboundsMapTileMapObject != null) {
-            return inboundsMapTileMapObject.smallTile.getBaseColor() != highlightingColor;
+            return inboundsMapTileMapObject.smallTile.getBaseColor() != highlightingColor.get();
         }
         return false;
     }
 
-    //private static Color highlightingColor = EaselColors.withOpacity(ColorDatabase.DEFAULT_RED, 0.8f);
-    private static Color highlightingColor = ColorEnum.RED.get();
+    public static ColorEnum getInitialColor() {
+        return initialColor;
+    }
 
-    public static void setHighlightingColor(Color color) {
+    //private static Color highlightingColor = EaselColors.withOpacity(ColorDatabase.DEFAULT_RED, 0.8f);
+    private static ColorEnum highlightingColor = ColorEnum.RED;
+
+    public static void setHighlightingColor(ColorEnum color) {
         highlightingColor = color;
     }
 
@@ -295,22 +302,25 @@ public class MapTileManager {
         return false;
     }
 
-    private static basemod.Pair<Boolean, Color> hasAllHighlightedType(RoomType type)
+    private static basemod.Pair<Boolean, ColorEnum> hasAllHighlightedType(RoomType type)
     {
         boolean anyFound = false;
-        Color baseColor = Color.BLACK;
+        ColorEnum baseColor = ColorEnum.RED;
 
         for (MapTileMapObject obj : tracked.values()) {
             if (obj.type == type) {
                 if(!obj.isHighlighted)
                     return new basemod.Pair<>(false, baseColor);
 
+                ColorEnum smallTileColor = ColorEnum.getColor(obj.smallTile.getBaseColor());
+                ColorEnum largeTileColor = ColorEnum.getColor(obj.largeTile.getBaseColor());
+
                 if(!anyFound) {
                     anyFound = true;
-                    baseColor = obj.smallTile.getBaseColor();
+                    baseColor = smallTileColor;
                 }
 
-                if(obj.smallTile.getBaseColor() != baseColor || obj.largeTile.getBaseColor() != baseColor)
+                if(smallTileColor != baseColor || largeTileColor != baseColor)
                     return new basemod.Pair<>(false, baseColor);
             }
         }
@@ -344,7 +354,7 @@ public class MapTileManager {
 
     // --------------------------------------------------------------------------------
 
-    private static void highlightAllType(boolean val, Color color, RoomType type, boolean silent) {
+    private static void highlightAllType(boolean val, ColorEnum color, RoomType type, boolean silent) {
 
         if(!silent) {
             // Spaghetti code to put this here but oh well
@@ -360,8 +370,8 @@ public class MapTileManager {
             if (obj.type == type) {
                 obj.isHighlighted = val;
 
-                obj.smallTile.setBaseColor(color);
-                obj.largeTile.setBaseColor(color);
+                obj.smallTile.setBaseColor(color.get());
+                obj.largeTile.setBaseColor(color.get());
             }
         }
     }
@@ -433,46 +443,74 @@ public class MapTileManager {
 
 
     public static void loadDefaults() {
-        defaultRoomTypeToColor.clear();
+        try {
+            if(MapMarks.getModSpireConfig().has(InitialColorPropertyName)) {
+                String initialColorString = MapMarks.getModSpireConfig().getString(InitialColorPropertyName);
+                MapMarks.logger.log(Level.INFO, "Loading initial color: " + initialColorString);
+                initialColor = ColorEnum.valueOf(initialColorString);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        String defaultRoomTypeToColorString = MapMarks.getModSpireConfig().getString(RoomTypeToColorPropertyName);
-        MapMarks.logger.log(Level.INFO, "Loading default room type to color: " + defaultRoomTypeToColorString);
+        try {
+            if(MapMarks.getModSpireConfig().has(RoomTypeToColorPropertyName)) {
+                defaultRoomTypeToColor.clear();
 
-        String[] pairs = defaultRoomTypeToColorString.split(",");
-        for (String pair : pairs) {
-            if(pair.isEmpty())
-                continue;
+                String defaultRoomTypeToColorString = MapMarks.getModSpireConfig().getString(RoomTypeToColorPropertyName);
+                MapMarks.logger.log(Level.INFO, "Loading default room type to color: " + defaultRoomTypeToColorString);
 
-            String[] keyValue = pair.split(":");
-            String key = keyValue[0];
-            String value = keyValue[1];
+                String[] pairs = defaultRoomTypeToColorString.split(",");
+                for (String pair : pairs) {
+                    if (pair.isEmpty())
+                        continue;
 
-            RoomType type = RoomType.fromSymbol(key);
-            Color color = Color.valueOf(value);
+                    String[] keyValue = pair.split(":");
+                    if (keyValue.length != 2)
+                        continue;
 
-            defaultRoomTypeToColor.put(type, color);
+                    String key = keyValue[0];
+                    String value = keyValue[1];
+
+                    RoomType type = RoomType.fromSymbol(key);
+                    ColorEnum color = ColorEnum.valueOf(value);
+
+                    defaultRoomTypeToColor.put(type, color);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public static void saveDefaults() {
-        defaultRoomTypeToColor.clear();
-
-        for(RoomType roomType : RoomType.values()) {
-            basemod.Pair<Boolean, Color> highlightedTypeResult = hasAllHighlightedType(roomType);
-            if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
-                defaultRoomTypeToColor.put(roomType, highlightedTypeResult.getValue());
+        try {
+            initialColor = highlightingColor;
+            MapMarks.logger.log(Level.INFO, "Saving initial color: " + initialColor.toString());
+            MapMarks.getModSpireConfig().setString(InitialColorPropertyName, initialColor.toString());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
-        StringBuilder defaultRoomTypeToColorString = new StringBuilder();
-
-        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
-            defaultRoomTypeToColorString.append(RoomType.toSymbol(entry.getKey())).append(":").append(entry.getValue().toString()).append(",");
-
-        MapMarks.getModSpireConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
-
-        MapMarks.logger.log(Level.INFO, "Saving default room type to color: " + defaultRoomTypeToColorString);
-
         try {
+            defaultRoomTypeToColor.clear();
+
+            for(RoomType roomType : RoomType.values()) {
+                basemod.Pair<Boolean, ColorEnum> highlightedTypeResult = hasAllHighlightedType(roomType);
+                if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
+                    defaultRoomTypeToColor.put(roomType, highlightedTypeResult.getValue());
+            }
+
+            StringBuilder defaultRoomTypeToColorString = new StringBuilder();
+
+            for(Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
+                defaultRoomTypeToColorString.append(RoomType.toSymbol(entry.getKey())).append(":").append(entry.getValue().toString()).append(",");
+
+            MapMarks.getModSpireConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
+
+            MapMarks.logger.log(Level.INFO, "Saving default room type to color: " + defaultRoomTypeToColorString);
+
             MapMarks.getModSpireConfig().save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -481,20 +519,26 @@ public class MapTileManager {
 
 
     public static void clearDefaults() {
-
-        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
-        {
-            basemod.Pair<Boolean, Color> highlightedTypeResult = hasAllHighlightedType(entry.getKey());
-            if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
-                highlightAllType(false, entry.getValue(), entry.getKey(), true);
+        try {
+            MapMarks.logger.log(Level.INFO, "Clearing initial color!");
+            MapMarks.getModSpireConfig().remove(InitialColorPropertyName);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        defaultRoomTypeToColor.clear();
-
-        MapMarks.logger.log(Level.INFO, "Clearing default room type to color!");
-
-        MapMarks.getModSpireConfig().remove(RoomTypeToColorPropertyName);
         try {
+            for(Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
+            {
+                basemod.Pair<Boolean, ColorEnum> highlightedTypeResult = hasAllHighlightedType(entry.getKey());
+                if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
+                    highlightAllType(false, entry.getValue(), entry.getKey(), true);
+            }
+
+            defaultRoomTypeToColor.clear();
+
+            MapMarks.logger.log(Level.INFO, "Clearing default room type to color!");
+            MapMarks.getModSpireConfig().remove(RoomTypeToColorPropertyName);
+
             MapMarks.getModSpireConfig().save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -505,7 +549,7 @@ public class MapTileManager {
     public static void applyDefaults() {
         MapMarks.logger.log(Level.INFO, "Applying default room type to color: " + defaultRoomTypeToColor.toString());
 
-        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
+        for(Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
             highlightAllType(true, entry.getValue(), entry.getKey(), true);
     }
 }

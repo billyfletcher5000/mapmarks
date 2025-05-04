@@ -119,6 +119,20 @@ public class RadialMenu extends AbstractWidget<RadialMenu> {
         }
     }
 
+    public void setSelectedColor(ColorEnum color)
+    {
+        for(int i = 0; i < objects.size(); i++)
+        {
+            if(objects.get(i).getColor() == color)
+            {
+                selectedIndex = i;
+                return;
+            }
+        }
+
+        selectedIndex = -1;
+    }
+
     @Override
     public float getContentWidth() {
         return WIDTH;

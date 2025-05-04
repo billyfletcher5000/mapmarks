@@ -96,6 +96,12 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
 
         paintContainer = new PaintContainer();
 
+        // TODO: Make this whole process less insane
+        ColorEnum initialColor = MapTileManager.getInitialColor();
+        menu.setSelectedColor(initialColor);
+        legendObject.setColor(initialColor);
+        MapTileManager.setHighlightingColor(initialColor);
+
         BaseMod.registerModBadge(MapMarksTextureDatabase.MOD_ICON.getTexture(), modDisplayName, modAuthorName, modDescription, new ModPanel());
     }
 
@@ -205,8 +211,6 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
                 menu.close();
                 SoundHelper.playRadialCloseSound();
 
-//                System.out.println("Menu closed. Selected index is: " + menu.getSelectedIndex());
-
                 // Update the results with the new selection
                 int selectedIndex = menu.getSelectedIndex();
 
@@ -214,8 +218,7 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
                     ColorEnum newColor = menu.getSelectedColorOrDefault();
                     legendObject.setColor(newColor);
 
-                    //MapTileManager.setHighlightingColor(EaselColors.withOpacity(newColor.get(), 0.8f));
-                    MapTileManager.setHighlightingColor(newColor.get());
+                    MapTileManager.setHighlightingColor(newColor);
 
                     previouslySelectedIndex = selectedIndex;
                 }

@@ -17,7 +17,7 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     private static final float HEIGHT = 36;
 
     public static final String TIP_SAVE_HEADER = "Save Defaults";
-    public static final String TIP_SAVE_BODY = "Saves the current colors of each encounter as defaults if the same color is applied to all encounters of that type.";
+    public static final String TIP_SAVE_BODY = "Saves the current colors of each encounter as defaults if the same color is applied to all encounters of that type. Also saves the initially selected color.";
 
     public static final String TIP_CLEAR_HEADER = "Clear Defaults";
     public static final String TIP_CLEAR_BODY = "Clears the default colors of each encounter, including on the map if all encounters of that type are colored.";
