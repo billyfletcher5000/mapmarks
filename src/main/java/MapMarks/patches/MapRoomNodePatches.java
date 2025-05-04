@@ -55,6 +55,8 @@ public class MapRoomNodePatches {
 
             MapTileManager.initializeReachableMap();
             MapTileManager.computeReachable();
+
+            MapTileManager.applyDefaults();
         }
     }
 

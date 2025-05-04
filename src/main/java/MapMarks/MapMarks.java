@@ -1,8 +1,6 @@
 package MapMarks;
 
-import MapMarks.ui.LegendObject;
-import MapMarks.ui.PaintContainer;
-import MapMarks.ui.RadialMenu;
+import MapMarks.ui.*;
 import MapMarks.utils.ColorEnum;
 import MapMarks.utils.MapMarksTextureDatabase;
 import MapMarks.utils.SoundHelper;
@@ -16,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.LegendItem;
@@ -28,13 +27,30 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 @SpireInitializer
 public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber, RenderSubscriber, AddAudioSubscriber {
     public static final Logger logger = LogManager.getLogger(MapMarks.class);
 
+    private static final String modId = "ojb_mapmarks";
+    private static final String modName = "mapMarks";
+    private static final String configFileName = "Config";
+    private static SpireConfig modConfig = null;
+
+    public static SpireConfig getModConfig() { return modConfig; }
+
     public static void initialize() {
         new MapMarks();
+
+        logger.info("Initializing MapMarks!");
+        try {
+            logger.info("Creating SpireConfig!");
+            modConfig = new SpireConfig(modName, configFileName);
+            MapTileManager.loadDefaults();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public MapMarks() {
@@ -46,11 +62,12 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
 
     public static LegendObject legendObject;
 
+    public static DefaultsButton saveDefaultsButton;
+    public static DefaultsButton clearDefaultsButton;
+
     @Override
     public void receivePostInitialize() {
-//        logger.info("Hello, world");
         TextureLoader.loadTextures(MapMarksTextureDatabase.values());
-        //Easel.initialize();
 
         menu = new RadialMenu();
         legendObject = new LegendObject()
@@ -67,9 +84,17 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
                 .anchoredAt(1575, 767, AnchorPosition.CENTER)
         ;
 
-//        System.out.println("Settings.xScale: " + Settings.xScale);
-//        System.out.println("Settings.yScale: " + Settings.yScale);
-//        System.out.println("Settings.scale: " + Settings.scale);
+        saveDefaultsButton = new DefaultsButton(DefaultsButtonMode.SAVE)
+                .onLeftClick(onClick -> {
+                    MapTileManager.saveDefaults();
+                })
+                .anchoredAt(1760, 812, AnchorPosition.LEFT_TOP);
+
+        clearDefaultsButton = new DefaultsButton(DefaultsButtonMode.CLEAR)
+                .onLeftClick(onClick -> {
+                    MapTileManager.clearDefaults();
+                })
+                .anchoredAt(1790, 812, AnchorPosition.LEFT_TOP);
 
         paintContainer = new PaintContainer();
     }

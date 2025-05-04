@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.Legend;
 import easel.ui.AnchorPosition;
 
+import java.util.Map;
+
 public class LegendPatches {
 //    // Anchors the legend object into position
 //    @SpirePatch(
@@ -36,6 +38,9 @@ public class LegendPatches {
             //if (legend.c.a >= 0.8f && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP) {
                 MapMarks.legendObject.setAlphaFromLegend(legend.c.a);
                 MapMarks.legendObject.render(sb);
+
+                MapMarks.saveDefaultsButton.render(sb);
+                MapMarks.clearDefaultsButton.render(sb);
             }
         }
     }
@@ -51,6 +56,8 @@ public class LegendPatches {
             // TODO: probably don't need to actually copy the game code's check here
             if (mapAlpha >= 0.8f && isMapScreen) {
                 MapMarks.legendObject.update();
+                MapMarks.saveDefaultsButton.update();
+                MapMarks.clearDefaultsButton.update();
             }
         }
     }
