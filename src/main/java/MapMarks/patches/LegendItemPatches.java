@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.LegendItem;
-import easel.utils.EaselSoundHelper;
 
 import java.util.HashMap;
 
@@ -36,47 +35,48 @@ public class LegendItemPatches {
 //    public LegendItem(String label, Texture img, String tipHeader, String tipBody, int index) {
             if (index == 0) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightEvent())
+                    if (MapTileManager.hasHighlightAnyEvent())
                         MapTileManager.highlightAllEvents(false);
                     else
                         MapTileManager.highlightAllEvents(true);
                 }));
             } else if (index == 1) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightMerchant())
+                    if (MapTileManager.hasHighlightAnyMerchant())
                         MapTileManager.highlightAllMerchant(false);
                     else
                         MapTileManager.highlightAllMerchant(true);
                 }));
             } else if (index == 2) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightTreasure())
+                    if (MapTileManager.hasHighlightAnyTreasure())
                         MapTileManager.highlightAllTreasure(false);
                     else
                         MapTileManager.highlightAllTreasure(true);
                 }));
             } else if (index == 3) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightRest())
+                    if (MapTileManager.hasHighlightAnyRest())
                         MapTileManager.highlightAllRest(false);
                     else
                         MapTileManager.highlightAllRest(true);
                 }));
             } else if (index == 4) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightEnemy())
+                    if (MapTileManager.hasHighlightAnyEnemy())
                         MapTileManager.highlightAllEnemy(false);
                     else
                         MapTileManager.highlightAllEnemy(true);
                 }));
             } else if (index == 5) {
                 handler.put(item, new LegendItemHandler(() -> {
-                    if (MapTileManager.hasHighlightElite())
+                    if (MapTileManager.hasHighlightAnyElite())
                         MapTileManager.highlightAllElite(false);
                     else
                         MapTileManager.highlightAllElite(true);
                 }));
             }
+
 //            this.items.add(new LegendItem(TEXT[0], ImageMaster.MAP_NODE_EVENT, TEXT[1], TEXT[2], 0));
 //            this.items.add(new LegendItem(TEXT[3], ImageMaster.MAP_NODE_MERCHANT, TEXT[4], TEXT[5], 1));
 //            this.items.add(new LegendItem(TEXT[6], ImageMaster.MAP_NODE_TREASURE, TEXT[7], TEXT[8], 2));

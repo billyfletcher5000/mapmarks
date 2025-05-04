@@ -2,8 +2,8 @@ package MapMarks;
 
 import MapMarks.ui.tiles.LargeMapTile;
 import MapMarks.ui.tiles.SmallMapTile;
-import MapMarks.utils.ColorDatabase;
 import MapMarks.utils.ColorEnum;
+import MapMarks.utils.RoomType;
 import MapMarks.utils.SoundHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,37 +13,12 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import easel.ui.AnchorPosition;
 import easel.utils.EaselSoundHelper;
-import easel.utils.colors.EaselColors;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
 public class MapTileManager {
-    private enum RoomType {
-        MONSTER, ELITE, EVENT, BOSS, SHOP, TREASURE, REST, UNKNOWN_TYPE;
-
-        static RoomType fromSymbol(String symbol) {
-            if (symbol == null)
-                return UNKNOWN_TYPE;
-
-            if (symbol.equals("M"))
-                return MONSTER;
-            else if (symbol.equals("?"))
-                return EVENT;
-            else if (symbol.equals("B"))
-                return BOSS;
-            else if (symbol.equals("E"))
-                return ELITE;
-            else if (symbol.equals("R"))
-                return REST;
-            else if (symbol.equals("$"))
-                return SHOP;
-            else if (symbol.equals("T"))
-                return TREASURE;
-            else
-                return UNKNOWN_TYPE;
-        }
-    }
 
     private static class MapTileMapObject {
         private SmallMapTile smallTile;
@@ -62,7 +37,10 @@ public class MapTileManager {
         }
     }
 
+    private static final String RoomTypeToColorPropertyName = "RoomTypeToColor";
+
     private static HashMap<MapRoomNode, MapTileMapObject> tracked = new HashMap<>();
+    private static HashMap<RoomType, Color> defaultRoomTypeToColor = new HashMap<>();
 
     // TODO: lists for each type, to make accessing all of them of a particular type instant (e.g. using the legend)
 
@@ -307,7 +285,7 @@ public class MapTileManager {
         }
     }
 
-    private static boolean hasHighlightedType(RoomType type) {
+    private static boolean hasAnyHighlightedType(RoomType type) {
 //        System.out.println("Checking all highlights of type " + type);
         for (MapTileMapObject obj : tracked.values()) {
 //            System.out.println("  Checking obj " + obj.type + ", isH " + obj.isHighlighted);
@@ -317,38 +295,64 @@ public class MapTileManager {
         return false;
     }
 
-    public static boolean hasHighlightEvent() {
-        return hasHighlightedType(RoomType.EVENT);
+    private static basemod.Pair<Boolean, Color> hasAllHighlightedType(RoomType type)
+    {
+        boolean anyFound = false;
+        Color baseColor = Color.BLACK;
+
+        for (MapTileMapObject obj : tracked.values()) {
+            if (obj.type == type) {
+                if(!obj.isHighlighted)
+                    return new basemod.Pair<>(false, baseColor);
+
+                if(!anyFound) {
+                    anyFound = true;
+                    baseColor = obj.smallTile.getBaseColor();
+                }
+
+                if(obj.smallTile.getBaseColor() != baseColor || obj.largeTile.getBaseColor() != baseColor)
+                    return new basemod.Pair<>(false, baseColor);
+            }
+        }
+
+        return new basemod.Pair<>(anyFound, baseColor);
     }
 
-    public static boolean hasHighlightMerchant() {
-        return hasHighlightedType(RoomType.SHOP);
+    public static boolean hasHighlightAnyEvent() {
+        return hasAnyHighlightedType(RoomType.EVENT);
     }
 
-    public static boolean hasHighlightTreasure() {
-        return hasHighlightedType(RoomType.TREASURE);
+    public static boolean hasHighlightAnyMerchant() {
+        return hasAnyHighlightedType(RoomType.SHOP);
     }
 
-    public static boolean hasHighlightRest() {
-        return hasHighlightedType(RoomType.REST);
+    public static boolean hasHighlightAnyTreasure() {
+        return hasAnyHighlightedType(RoomType.TREASURE);
     }
 
-    public static boolean hasHighlightEnemy() {
-        return hasHighlightedType(RoomType.MONSTER);
+    public static boolean hasHighlightAnyRest() {
+        return hasAnyHighlightedType(RoomType.REST);
     }
 
-    public static boolean hasHighlightElite() {
-        return hasHighlightedType(RoomType.ELITE);
+    public static boolean hasHighlightAnyEnemy() {
+        return hasAnyHighlightedType(RoomType.MONSTER);
+    }
+
+    public static boolean hasHighlightAnyElite() {
+        return hasAnyHighlightedType(RoomType.ELITE);
     }
 
     // --------------------------------------------------------------------------------
 
-    private static void highlightAllType(boolean val, RoomType type) {
-        // Spaghetti code to put this here but oh well
-        if (val)
-            EaselSoundHelper.uiClick1();
-        else
-            EaselSoundHelper.uiClick2();
+    private static void highlightAllType(boolean val, Color color, RoomType type, boolean silent) {
+
+        if(!silent) {
+            // Spaghetti code to put this here but oh well
+            if (val)
+                EaselSoundHelper.uiClick1();
+            else
+                EaselSoundHelper.uiClick2();
+        }
 
 //        System.out.println("Highlight all highlights of type " + type + " to " + val);
         for (MapTileMapObject obj : tracked.values()) {
@@ -356,34 +360,34 @@ public class MapTileManager {
             if (obj.type == type) {
                 obj.isHighlighted = val;
 
-                obj.smallTile.setBaseColor(highlightingColor);
-                obj.largeTile.setBaseColor(highlightingColor);
+                obj.smallTile.setBaseColor(color);
+                obj.largeTile.setBaseColor(color);
             }
         }
     }
 
     public static void highlightAllEvents(boolean val) {
-        highlightAllType(val, RoomType.EVENT);
+        highlightAllType(val, highlightingColor, RoomType.EVENT, false);
     }
 
     public static void highlightAllMerchant(boolean val) {
-        highlightAllType(val, RoomType.SHOP);
+        highlightAllType(val, highlightingColor, RoomType.SHOP, false);
     }
 
     public static void highlightAllTreasure(boolean val) {
-        highlightAllType(val, RoomType.TREASURE);
+        highlightAllType(val, highlightingColor, RoomType.TREASURE, false);
     }
 
     public static void highlightAllRest(boolean val) {
-        highlightAllType(val, RoomType.REST);
+        highlightAllType(val, highlightingColor, RoomType.REST, false);
     }
 
     public static void highlightAllEnemy(boolean val) {
-        highlightAllType(val, RoomType.MONSTER);
+        highlightAllType(val, highlightingColor, RoomType.MONSTER, false);
     }
 
     public static void highlightAllElite(boolean val) {
-        highlightAllType(val, RoomType.ELITE);
+        highlightAllType(val, highlightingColor, RoomType.ELITE, false);
     }
 
     // --------------------------------------------------------------------------------
@@ -425,5 +429,83 @@ public class MapTileManager {
 
     public static void clear() {
         tracked.clear();
+    }
+
+
+    public static void loadDefaults() {
+        defaultRoomTypeToColor.clear();
+
+        String defaultRoomTypeToColorString = MapMarks.getModSpireConfig().getString(RoomTypeToColorPropertyName);
+        MapMarks.logger.log(Level.INFO, "Loading default room type to color: " + defaultRoomTypeToColorString);
+
+        String[] pairs = defaultRoomTypeToColorString.split(",");
+        for (String pair : pairs) {
+            if(pair.isEmpty())
+                continue;
+
+            String[] keyValue = pair.split(":");
+            String key = keyValue[0];
+            String value = keyValue[1];
+
+            RoomType type = RoomType.fromSymbol(key);
+            Color color = Color.valueOf(value);
+
+            defaultRoomTypeToColor.put(type, color);
+        }
+    }
+
+    public static void saveDefaults() {
+        defaultRoomTypeToColor.clear();
+
+        for(RoomType roomType : RoomType.values()) {
+            basemod.Pair<Boolean, Color> highlightedTypeResult = hasAllHighlightedType(roomType);
+            if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
+                defaultRoomTypeToColor.put(roomType, highlightedTypeResult.getValue());
+        }
+
+        StringBuilder defaultRoomTypeToColorString = new StringBuilder();
+
+        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
+            defaultRoomTypeToColorString.append(RoomType.toSymbol(entry.getKey())).append(":").append(entry.getValue().toString()).append(",");
+
+        MapMarks.getModSpireConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
+
+        MapMarks.logger.log(Level.INFO, "Saving default room type to color: " + defaultRoomTypeToColorString);
+
+        try {
+            MapMarks.getModSpireConfig().save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void clearDefaults() {
+
+        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
+        {
+            basemod.Pair<Boolean, Color> highlightedTypeResult = hasAllHighlightedType(entry.getKey());
+            if(highlightedTypeResult != null && highlightedTypeResult.getKey() == true)
+                highlightAllType(false, entry.getValue(), entry.getKey(), true);
+        }
+
+        defaultRoomTypeToColor.clear();
+
+        MapMarks.logger.log(Level.INFO, "Clearing default room type to color!");
+
+        MapMarks.getModSpireConfig().remove(RoomTypeToColorPropertyName);
+        try {
+            MapMarks.getModSpireConfig().save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void applyDefaults() {
+        MapMarks.logger.log(Level.INFO, "Applying default room type to color: " + defaultRoomTypeToColor.toString());
+
+        for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
+            highlightAllType(true, entry.getValue(), entry.getKey(), true);
     }
 }

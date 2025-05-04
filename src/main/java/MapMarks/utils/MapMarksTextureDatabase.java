@@ -4,20 +4,15 @@ import com.badlogic.gdx.graphics.Texture;
 import easel.utils.textures.ITextureDatabaseEnum;
 
 public enum MapMarksTextureDatabase implements ITextureDatabaseEnum {
-    PAINT_CIRCLE("MapMarks/textures/circle18.png"),
+    MOD_ICON("MapMarks/textures/modIcon.png"),
 
-//    LEGEND_BASE("MapMarks/textures/legend_base.png"),
-//    LEGEND_TRIM("MapMarks/textures/legend_trim.png"),
+    PAINT_CIRCLE("MapMarks/textures/circle18.png"),
 
     LEGEND_SHADOW("MapMarks/textures/legend/shadow.png"),
     LEGEND_BASE("MapMarks/textures/legend/base.png"),
     LEGEND_HIGHLIGHT("MapMarks/textures/legend/highlight.png"),
     LEGEND_DIM("MapMarks/textures/legend/dim.png"),
     LEGEND_TRIM("MapMarks/textures/legend/trim.png"),
-
-//    MAP_TILE_BASE("MapMarks/textures/tile/base.png"),
-//    MAP_TILE_TRIM("MapMarks/textures/tile/trim.png"),
-//    MAP_TILE_SHADOW("MapMarks/textures/tile/shadow.png"),
 
     SMALL_TILE_SHADOW("MapMarks/textures/small/shadow.png"),
     SMALL_TILE_BASE("MapMarks/textures/small/base.png"),
@@ -29,7 +24,10 @@ public enum MapMarksTextureDatabase implements ITextureDatabaseEnum {
     LARGE_TILE_TRIM("MapMarks/textures/large/trim.png"),
 
     RADIAL_BASE("MapMarks/textures/radial_base.png"),
-    RADIAL_TRIM("MapMarks/textures/radial_trim.png")
+    RADIAL_TRIM("MapMarks/textures/radial_trim.png"),
+
+    DEFAULTS_SAVE("MapMarks/textures/defaults/default_save_icon.png"),
+    DEFAULTS_CLEAR("MapMarks/textures/defaults/default_clear_icon.png")
     ;
 
     private final String internalPath;
