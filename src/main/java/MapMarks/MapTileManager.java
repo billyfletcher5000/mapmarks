@@ -37,9 +37,6 @@ public class MapTileManager {
         }
     }
 
-    private static final String InitialColorPropertyName = "InitialColor";
-    private static final String RoomTypeToColorPropertyName = "RoomTypeToColor";
-
     private static ColorEnum initialColor = ColorEnum.RED;
 
     private static HashMap<MapRoomNode, MapTileMapObject> tracked = new HashMap<>();
@@ -444,8 +441,8 @@ public class MapTileManager {
 
     public static void loadDefaults() {
         try {
-            if(MapMarks.getModSpireConfig().has(InitialColorPropertyName)) {
-                String initialColorString = MapMarks.getModSpireConfig().getString(InitialColorPropertyName);
+            if(MapMarks.hasInitialColorConfigProperty()) {
+                String initialColorString = MapMarks.getInitialColorConfigProperty();
                 MapMarks.logger.log(Level.INFO, "Loading initial color: " + initialColorString);
                 initialColor = ColorEnum.valueOf(initialColorString);
             }
@@ -454,10 +451,10 @@ public class MapTileManager {
         }
 
         try {
-            if(MapMarks.getModSpireConfig().has(RoomTypeToColorPropertyName)) {
+            if(MapMarks.hasRoomTypeToColorConfigProperty()) {
                 defaultRoomTypeToColor.clear();
 
-                String defaultRoomTypeToColorString = MapMarks.getModSpireConfig().getString(RoomTypeToColorPropertyName);
+                String defaultRoomTypeToColorString = MapMarks.getRoomTypeToColorConfigProperty();
                 MapMarks.logger.log(Level.INFO, "Loading default room type to color: " + defaultRoomTypeToColorString);
 
                 String[] pairs = defaultRoomTypeToColorString.split(",");
@@ -487,7 +484,7 @@ public class MapTileManager {
         try {
             initialColor = highlightingColor;
             MapMarks.logger.log(Level.INFO, "Saving initial color: " + initialColor.toString());
-            MapMarks.getModSpireConfig().setString(InitialColorPropertyName, initialColor.toString());
+            MapMarks.setInitialColorConfigProperty(initialColor.toString());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -507,11 +504,11 @@ public class MapTileManager {
             for(Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
                 defaultRoomTypeToColorString.append(RoomType.toSymbol(entry.getKey())).append(":").append(entry.getValue().toString()).append(",");
 
-            MapMarks.getModSpireConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
+            MapMarks.setRoomTypeToColorConfigProperty(defaultRoomTypeToColorString.toString());
 
             MapMarks.logger.log(Level.INFO, "Saving default room type to color: " + defaultRoomTypeToColorString);
 
-            MapMarks.getModSpireConfig().save();
+            MapMarks.saveModSpireConfig();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -521,7 +518,7 @@ public class MapTileManager {
     public static void clearDefaults() {
         try {
             MapMarks.logger.log(Level.INFO, "Clearing initial color!");
-            MapMarks.getModSpireConfig().remove(InitialColorPropertyName);
+            MapMarks.removeInitialColorConfigProperty();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -537,19 +534,20 @@ public class MapTileManager {
             defaultRoomTypeToColor.clear();
 
             MapMarks.logger.log(Level.INFO, "Clearing default room type to color!");
-            MapMarks.getModSpireConfig().remove(RoomTypeToColorPropertyName);
+            MapMarks.removeRoomTypeToColorConfigProperty();
 
-            MapMarks.getModSpireConfig().save();
+            MapMarks.saveModSpireConfig();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static void applyDefaults(boolean isAct4) {
+        if(!isAct4 || !MapMarks.hasApplyDefaultsToAct4ConfigProperty() || MapMarks.getApplyDefaultsToAct4ConfigProperty()) {
+            MapMarks.logger.log(Level.INFO, "Applying default room type to color: " + defaultRoomTypeToColor.toString());
 
-    public static void applyDefaults() {
-        MapMarks.logger.log(Level.INFO, "Applying default room type to color: " + defaultRoomTypeToColor.toString());
-
-        for(Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
-            highlightAllType(true, entry.getValue(), entry.getKey(), true);
+            for (Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
+                highlightAllType(true, entry.getValue(), entry.getKey(), true);
+        }
     }
 }
