@@ -2,6 +2,7 @@ package MapMarks;
 
 import MapMarks.ui.*;
 import MapMarks.utils.ColorEnum;
+import MapMarks.utils.FixedModLabeledToggleButton;
 import MapMarks.utils.MapMarksTextureDatabase;
 import MapMarks.utils.SoundHelper;
 import basemod.BaseMod;
@@ -14,7 +15,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.LegendItem;
 import easel.ui.AnchorPosition;
@@ -23,6 +26,8 @@ import easel.utils.EaselSoundHelper;
 import easel.utils.textures.TextureLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 @SpireInitializer
 public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber, RenderSubscriber, AddAudioSubscriber {
@@ -33,10 +38,30 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     public static final String modDisplayName = "Map Marks";
     public static final String modAuthorName = "ojb, billyfletcher5000";
     public static final String modDescription = "Map Marks is a Slay the Spire mod for map node highlighting.";
+
+    // Config
     private static final String configFileName = "Config";
+    private static final String InitialColorPropertyName = "InitialColor";
+    private static final String RoomTypeToColorPropertyName = "RoomTypeToColor";
+    private static final String ApplyDefaultsToAct4PropertyName = "ApplyDefaultsToAct4";
     private static SpireConfig modSpireConfig = null;
 
-    public static SpireConfig getModSpireConfig() { return modSpireConfig; }
+    public static void saveModSpireConfig() throws IOException { modSpireConfig.save(); }
+    public static boolean hasInitialColorConfigProperty() { return modSpireConfig.has(InitialColorPropertyName); }
+    public static boolean hasRoomTypeToColorConfigProperty() { return modSpireConfig.has(RoomTypeToColorPropertyName); }
+    public static boolean hasApplyDefaultsToAct4ConfigProperty() { return modSpireConfig.has(ApplyDefaultsToAct4PropertyName); }
+    public static String getInitialColorConfigProperty() { return modSpireConfig.getString(InitialColorPropertyName); }
+    public static String getRoomTypeToColorConfigProperty() { return modSpireConfig.getString(RoomTypeToColorPropertyName); }
+    public static boolean getApplyDefaultsToAct4ConfigProperty() { return modSpireConfig.getBool(ApplyDefaultsToAct4PropertyName); }
+    public static void setInitialColorConfigProperty(String value) { modSpireConfig.setString(InitialColorPropertyName, value); }
+    public static void setRoomTypeToColorConfigProperty(String value) { modSpireConfig.setString(RoomTypeToColorPropertyName, value); }
+    public static void setApplyDefaultsToAct4ConfigProperty(boolean value) { modSpireConfig.setBool(ApplyDefaultsToAct4PropertyName, value); }
+    public static void removeInitialColorConfigProperty() { modSpireConfig.remove(InitialColorPropertyName); }
+    public static void removeRoomTypeToColorConfigProperty() { modSpireConfig.remove(RoomTypeToColorPropertyName); }
+    public static void removeApplyDefaultsToAct4ConfigProperty() { modSpireConfig.remove(ApplyDefaultsToAct4PropertyName); }
+    // ~Config
+
+    private ModPanel settingsPanel;
 
     public static void initialize() {
         new MapMarks();
@@ -102,7 +127,28 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
         legendObject.setColor(initialColor);
         MapTileManager.setHighlightingColor(initialColor);
 
-        BaseMod.registerModBadge(MapMarksTextureDatabase.MOD_ICON.getTexture(), modDisplayName, modAuthorName, modDescription, new ModPanel());
+        settingsPanel = createModPanel();
+        BaseMod.registerModBadge(MapMarksTextureDatabase.MOD_ICON.getTexture(), modDisplayName, modAuthorName, modDescription, settingsPanel);
+    }
+
+    private ModPanel createModPanel() {
+        ModPanel panel = new ModPanel();
+
+        boolean applyDefaultsToAct4State = !hasApplyDefaultsToAct4ConfigProperty() || getApplyDefaultsToAct4ConfigProperty();
+        FixedModLabeledToggleButton allPacksModeBtn = new FixedModLabeledToggleButton("Apply defaults to Act 4", 350.0f, 750F, Settings.CREAM_COLOR, FontHelper.charDescFont, applyDefaultsToAct4State, panel, (label) -> {
+
+        }, (button) -> {
+            setApplyDefaultsToAct4ConfigProperty(button.enabled);
+            try {
+                saveModSpireConfig();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        panel.addUIElement(allPacksModeBtn);
+
+        return panel;
     }
 
     @Override

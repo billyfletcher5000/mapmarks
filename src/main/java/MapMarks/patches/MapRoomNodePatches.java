@@ -56,7 +56,7 @@ public class MapRoomNodePatches {
             MapTileManager.initializeReachableMap();
             MapTileManager.computeReachable();
 
-            MapTileManager.applyDefaults();
+            MapTileManager.applyDefaults(false);
         }
     }
 
@@ -86,6 +86,8 @@ public class MapRoomNodePatches {
                 if (node.x >= 0 && node.y >= 0)
                     MapTileManager.track(node);
             }));
+
+            MapTileManager.applyDefaults(true);
         }
     }
 
