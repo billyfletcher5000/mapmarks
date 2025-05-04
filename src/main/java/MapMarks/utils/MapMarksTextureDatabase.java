@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import easel.utils.textures.ITextureDatabaseEnum;
 
 public enum MapMarksTextureDatabase implements ITextureDatabaseEnum {
+    MOD_ICON("MapMarks/textures/modIcon.png"),
+
     PAINT_CIRCLE("MapMarks/textures/circle18.png"),
 
     LEGEND_SHADOW("MapMarks/textures/legend/shadow.png"),

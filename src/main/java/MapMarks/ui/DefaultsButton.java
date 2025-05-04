@@ -25,8 +25,8 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     private static final Color DIM_COLOR = Color.valueOf("aaaaaaff");
     private static final Color HIGHLIGHT_COLOR = Color.valueOf("ffffffff");
 
-    private static final Color SAVE_COLOR = ColorEnum.YELLOW.get();
-    private static final Color CLEAR_COLOR = ColorEnum.RED.get();
+    private static final Color SAVE_COLOR = Color.valueOf("e9bc2a");
+    private static final Color CLEAR_COLOR = Color.valueOf("da3d3d");
 
     private final DefaultsButtonMode _mode;
     private final LayeredTextureWidget _ltw;

@@ -16,7 +16,6 @@ import easel.utils.EaselSoundHelper;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Level;
 
-import java.io.IOException;
 import java.util.*;
 
 public class MapTileManager {
@@ -436,7 +435,7 @@ public class MapTileManager {
     public static void loadDefaults() {
         defaultRoomTypeToColor.clear();
 
-        String defaultRoomTypeToColorString = MapMarks.getModConfig().getString(RoomTypeToColorPropertyName);
+        String defaultRoomTypeToColorString = MapMarks.getModSpireConfig().getString(RoomTypeToColorPropertyName);
         MapMarks.logger.log(Level.INFO, "Loading default room type to color: " + defaultRoomTypeToColorString);
 
         String[] pairs = defaultRoomTypeToColorString.split(",");
@@ -469,12 +468,12 @@ public class MapTileManager {
         for(Map.Entry<RoomType, Color> entry : defaultRoomTypeToColor.entrySet())
             defaultRoomTypeToColorString.append(RoomType.toSymbol(entry.getKey())).append(":").append(entry.getValue().toString()).append(",");
 
-        MapMarks.getModConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
+        MapMarks.getModSpireConfig().setString(RoomTypeToColorPropertyName, defaultRoomTypeToColorString.toString());
 
         MapMarks.logger.log(Level.INFO, "Saving default room type to color: " + defaultRoomTypeToColorString);
 
         try {
-            MapMarks.getModConfig().save();
+            MapMarks.getModSpireConfig().save();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -494,9 +493,9 @@ public class MapTileManager {
 
         MapMarks.logger.log(Level.INFO, "Clearing default room type to color!");
 
-        MapMarks.getModConfig().remove(RoomTypeToColorPropertyName);
+        MapMarks.getModSpireConfig().remove(RoomTypeToColorPropertyName);
         try {
-            MapMarks.getModConfig().save();
+            MapMarks.getModSpireConfig().save();
         } catch (Exception e) {
             e.printStackTrace();
         }
