@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 
 import java.util.function.Consumer;
 
+// This is a direct copy from the packmaster mod: https://github.com/erasels/PackmasterCharacter/blob/main/src/main/java/thePackmaster/ui/FixedModLabeledToggleButton/FixedModLabel.java
 // This class is a near-copy of the BaseMod class, changed to use Settings.xScale and Settings.yScale
 public class FixedModLabel implements IUIElement {
     private Consumer<FixedModLabel> update;

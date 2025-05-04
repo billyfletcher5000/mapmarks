@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 import java.util.function.Consumer;
 
+// This is a direct copy from the packmaster mod: https://github.com/erasels/PackmasterCharacter/blob/main/src/main/java/thePackmaster/ui/FixedModLabeledToggleButton/FixedModLabeledToggleButton.java
 // This class is a near-copy of the BaseMod class, changed to use Settings.xScale and Settings.yScale
 public class FixedModLabeledToggleButton implements IUIElement {
     private static final float TEXT_X_OFFSET = 40.0f;
