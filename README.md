@@ -2,6 +2,8 @@
 
 Map Marks is a WIP Slay the Spire mod for map node highlighting. It is a spiritual successor and an attempt to improve upon two previous mods: "Highlight Paths" (by reina - [Steam workshop link](https://steamcommunity.com/sharedfiles/filedetails/?id=1611047977)) and "Better Paths" (the world's worst titled mod by me - [Github link](https://github.com/casey-c/sts_betterpaths)).
 
+This is a fork of casey-c's mod that adds further functionality such as saving the default room type color selections and it can now remember your default initial color.
+
 ![overview](.github/overview.png)
 
 ## Features
@@ -70,6 +72,12 @@ the node to remove any highlights from nodes that cannot path through this targe
 
 * Unreachable nodes are automatically hidden once you choose a path. So if you highlight something that becomes no longer reachable once you move in a certain direction, it will no longer clutter your screen visually. You can mouse over the legend button to temporarily show these unreachable, but still highlighted nodes.
 
+### Saving Defaults
+
+To save defaults: Simply assign a colour to the room type via the legend like normal, then hit the new little Save icon button to save the current set of assigned colours as defaults. Then every time you reload the game, enter a new act or start a new run, those colours will be applied by default. This also works for the initial colour in the colour picker.
+
+![image](https://github.com/user-attachments/assets/ca0f41bd-fb52-4442-a6dd-2645441e756a)
+
 ### Known issues
 
 * Probably not compatible with the Colored Map or Dark Map mods, now that I have a patch to change the colored borders for my tiles to look okay. These will hopefully be fixed eventually, but for now please let me know how usable/unusable they actually are because I haven't done any testing yet!
@@ -84,7 +92,7 @@ the node to remove any highlights from nodes that cannot path through this targe
 
 This is a rough pre-alpha of the mod. Don't use yet unless you're willing to encounter bugs / crashes / a slightly more painful installation.
 
-Head to the [releases page](https://github.com/casey-c/mapmarks/releases) and download **both** the "easel" JAR file and the "MapMarks" JAR file. Easel is my currently unreleased UI library project (which once it's more stable will make its way to a more formal Github repo and the workshop). Because Easel is not even ready for an alpha release, I'm including the most up to date build of it so far alongside the releases of this repository. 
+Head to the [releases page](https://github.com/billyfletcher5000/mapmarks/releases) and download **both** the "easel" JAR file and the "MapMarks" JAR file. Easel is my currently unreleased UI library project (which once it's more stable will make its way to a more formal Github repo and the workshop). Because Easel is not even ready for an alpha release, I'm including the most up to date build of it so far alongside the releases of this repository. 
 
 When this mod requires an update, you will want to redownload **both** of these JAR files to make sure everything is working. Eventually these both will be on the workshop to make things easy, but we're not there yet as there's a lot of work to do first.
 
