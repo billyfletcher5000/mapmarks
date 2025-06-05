@@ -132,13 +132,15 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
 
         saveDefaultsButton = new DefaultsButton(DefaultsButtonMode.SAVE)
                 .onLeftClick(onClick -> {
-                    MapTileManager.saveDefaults();
+                    if(!doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed())
+                        MapTileManager.saveDefaults();
                 })
                 .anchoredAt(1760, 812, AnchorPosition.LEFT_TOP);
 
         clearDefaultsButton = new DefaultsButton(DefaultsButtonMode.CLEAR)
                 .onLeftClick(onClick -> {
-                    MapTileManager.clearDefaults();
+                    if(!doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed())
+                        MapTileManager.clearDefaults();
                 })
                 .anchoredAt(1790, 812, AnchorPosition.LEFT_TOP);
 

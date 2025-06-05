@@ -54,8 +54,8 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     protected void updateWidget() {
         super.updateWidget();
 
-        UIStrings uiStrings = MapMarks.getDefaultsButtonUIStrings();
-        if (hb.hovered) {
+        if (!MapMarks.doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed() && hb.hovered) {
+            UIStrings uiStrings = MapMarks.getDefaultsButtonUIStrings();
             switch (_mode) {
                 case SAVE:
                     TipHelper.renderGenericTip(1500.0f * Settings.xScale,
