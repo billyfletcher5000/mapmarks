@@ -41,31 +41,6 @@ public class RadialMenu extends AbstractWidget<RadialMenu> {
 
     public RadialMenu() {
         objects = new ArrayList<>(
-//                Arrays.asList(
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("f1e9cf"), EaselColorHelper.fromHexString("b6ad8c")), // light gray
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("db2424"), EaselColorHelper.fromHexString("5e3333")), // red
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("41b611"), EaselColorHelper.fromHexString("3e5f30")), // green
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("2bafbf"), EaselColorHelper.fromHexString("335357")), // blue
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("ab30ba"), EaselColorHelper.fromHexString("3d2b3f")), // purple
-//                        new RadialMenuObject(EaselColorHelper.fromHexString("cdb156"), EaselColorHelper.fromHexString("403a27")) // yellow
-//                )
-//                Arrays.asList(
-////                        new RadialMenuObject(Color.CORAL, Color.LIME), // test
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_GRAY, ColorDatabase.DEFAULT_GRAY_DIMMED), // light gray
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_RED, ColorDatabase.DEFAULT_RED_DIMMED), // red
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_GREEN, ColorDatabase.DEFAULT_GREEN_DIMMED), // green
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_BLUE, ColorDatabase.DEFAULT_BLUE_DIMMED), // blue
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_PURPLE, ColorDatabase.DEFAULT_PURPLE_DIMMED), // purple
-//                        new RadialMenuObject(ColorDatabase.DEFAULT_YELLOW, ColorDatabase.DEFAULT_YELLOW_DIMMED) // yellow
-//                )
-//                Arrays.asList(
-//                        new RadialMenuObject(ColorEnum.WHITE.get(), ColorEnum.WHITE.getDimmed()), // light gray
-//                        new RadialMenuObject(ColorEnum.RED.get(), ColorEnum.RED.getDimmed()), // red
-//                        new RadialMenuObject(ColorEnum.GREEN.get(), ColorEnum.GREEN.getDimmed()), // green
-//                        new RadialMenuObject(ColorEnum.BLUE.get(), ColorEnum.BLUE.getDimmed()), // blue
-//                        new RadialMenuObject(ColorEnum.PURPLE.get(), ColorEnum.PURPLE.getDimmed()), // purple
-//                        new RadialMenuObject(ColorEnum.YELLOW.get(), ColorEnum.YELLOW.getDimmed()) // yellow
-//                )
                 Arrays.asList(
                         new RadialMenuObject(ColorEnum.WHITE),
                         new RadialMenuObject(ColorEnum.RED),

@@ -1,12 +1,12 @@
 package MapMarks.ui;
 
-import MapMarks.utils.ColorDatabase;
-import MapMarks.utils.ColorEnum;
-import MapMarks.utils.MapMarksTextureDatabase;
+import MapMarks.MapMarks;
+import MapMarks.utils.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import easel.ui.AbstractWidget;
 import easel.ui.AnchorPosition;
 import easel.ui.InterpolationSpeed;
@@ -16,11 +16,6 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     private static final float WIDTH = 36;
     private static final float HEIGHT = 36;
 
-    public static final String TIP_SAVE_HEADER = "Save Defaults";
-    public static final String TIP_SAVE_BODY = "Saves the current colors of each encounter as defaults if the same color is applied to all encounters of that type. Also saves the initially selected color.";
-
-    public static final String TIP_CLEAR_HEADER = "Clear Defaults";
-    public static final String TIP_CLEAR_BODY = "Clears the default colors of each encounter, including on the map if all encounters of that type are colored.";
 
     private static final Color DIM_COLOR = Color.valueOf("aaaaaaff");
     private static final Color HIGHLIGHT_COLOR = Color.valueOf("ffffffff");
@@ -57,18 +52,20 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     @Override
     protected void updateWidget() {
         super.updateWidget();
+
+        UIStrings uiStrings = MapMarks.getDefaultsButtonUIStrings();
         if (hb.hovered) {
             switch (_mode) {
                 case SAVE:
                     TipHelper.renderGenericTip(1500.0f * Settings.xScale,
                             270.0f * Settings.scale,
-                            TIP_SAVE_HEADER,
-                            TIP_SAVE_BODY);
+                            LocalizationHelper.getDictString(uiStrings, LocalizationConstants.DefaultsButton.tipSaveHeader),
+                            LocalizationHelper.getDictString(uiStrings, LocalizationConstants.DefaultsButton.tipSaveBody));
                 case CLEAR:
                     TipHelper.renderGenericTip(1500.0f * Settings.xScale,
                             270.0f * Settings.scale,
-                            TIP_CLEAR_HEADER,
-                            TIP_CLEAR_BODY);
+                            LocalizationHelper.getDictString(uiStrings, LocalizationConstants.DefaultsButton.tipClearHeader),
+                            LocalizationHelper.getDictString(uiStrings, LocalizationConstants.DefaultsButton.tipClearBody));
             }
         }
 

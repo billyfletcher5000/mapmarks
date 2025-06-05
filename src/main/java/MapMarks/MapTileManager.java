@@ -540,6 +540,13 @@ public class MapTileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            MapMarks.logger.log(Level.INFO, "Clearing apply defaults to act 4!");
+            MapMarks.removeApplyDefaultsToAct4ConfigProperty();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void applyDefaults(boolean isAct4) {

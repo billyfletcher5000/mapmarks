@@ -66,9 +66,5 @@ public class LargeMapTile extends AbstractWidget<LargeMapTile> {
     @Override
     protected void renderWidget(SpriteBatch sb) {
         ltw.render(sb);
-
-//        EaselGraphicsHelper.drawDebugRects(sb, this);
-//        if (hb != null)
-//            hb.render(sb);
     }
 }

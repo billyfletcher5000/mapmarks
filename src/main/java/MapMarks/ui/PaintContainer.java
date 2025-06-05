@@ -34,23 +34,6 @@ public class PaintContainer extends AbstractWidget<PaintContainer> {
             this.dungeonMapOffsetY = dungeonMapOffsetY;
 
             this.color = color;
-
-//            sb.draw(this.room.getMapImgOutline(),
-//                    (float)this.x * SPACING_X + OFFSET_X - 64.0f + this.offsetX,
-//                    (float)this.y * Settings.MAP_DST_Y + OFFSET_Y + DungeonMapScreen.offsetY - 64.0f + this.offsetY,
-//                    64.0f,
-//                    64.0f,
-//                    128.0f,
-//                    128.0f,
-//                    this.scale * Settings.scale * 2.0f,
-//                    this.scale * Settings.scale * 2.0f,
-//                    0.0f,
-//                    0,
-//                    0,
-//                    128,
-//                    128,
-//                    false,
-//                    false);
         }
 
         public void render(SpriteBatch sb, float currentDungeonMapOffsetY) {
