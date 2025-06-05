@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Kartenmarkierungen: Steuerung",
+      "tip_body" : "#gRechtsklicken Sie einen Knoten, um dessen Hervorhebung umzuschalten. #gRechtsklicken+Ziehen, um viele Knoten gleichzeitig umzuschalten. #gRechtsklicken Sie die Legendenelemente, um alle eines bestimmten Typs umzuschalten. #gRechtsklicken Sie diese Legendenschaltfläche, um alle Hervorhebungen zu löschen. NL NL #pRechtsklicken+Ziehen außerhalb von Knoten, um ein Radialmenü zum Auswählen der Farbe zu öffnen. NL NL #rALT+Rechtsklicken, um mit der aktuellen Farbe zu malen. #rALT+Rechtsklicken Sie diese Legendenschaltfläche, um alle Zeichenstriche zu löschen. NL NL #bStrg+Rechtsklicken Sie einen Knoten, um alle Hervorhebungen von Knoten zu löschen, die für ihn unerreichbar sind (d.h. kein Pfad zwischen einem zuvor hervorgehobenen Knoten und dem aktuellen Ziel).",
+      "tip_header_succinct" : "Kartenmarkierungen",
+      "tip_body_succinct" : "Halten Sie #gUmschalt gedrückt, um Anweisungen und Steuerelemente für diesen Mod anzuzeigen."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Standardeinstellungen speichern",
+      "tip_save_body" : "Speichert die aktuellen Farben jeder Begegnung als Standard, wenn die gleiche Farbe auf alle Begegnungen dieses Typs angewendet wird. Speichert auch die anfänglich ausgewählte Farbe.",
+      "tip_clear_header" : "Standardeinstellungen löschen",
+      "tip_clear_body" : "Löscht die Standardfarben jeder Begegnung, auch auf der Karte, wenn alle Begegnungen dieses Typs farbig sind."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Standardeinstellungen auf Akt 4 anwenden",
+      "require_shift_to_save_defaults" : "Umschalt zum Anzeigen der Schaltflächen 'Standardeinstellungen speichern' erforderlich"
+    }
+  }
+}

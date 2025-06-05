@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Map Marks: Controls",
+      "tip_body" : "#gRight+Click a node to toggle its highlight. #gRight+Click+Drag to toggle many nodes at once. #gRight+Click the legend items to toggle all of a certain type. #gRight+Click this legend button to clear all highlights. NL NL #pRight+Click+Drag outside nodes to open a radial menu to select the color. NL NL #rALT+Right+Click to start painting with the current color. #rALT+Right+Click this legend button to clear all pen drawings. NL NL #bControl+Right+Click a node to clear all highlights from nodes unreachable to it (i.e. no path between another previously highlighted node and the current target).",
+      "tip_header_succinct" : "Map Marks",
+      "tip_body_succinct" : "Hold #gShift to show instructions and controls for this mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Save Defaults",
+      "tip_save_body" : "Saves the current colors of each encounter as defaults if the same color is applied to all encounters of that type. Also saves the initially selected color.",
+      "tip_clear_header" : "Clear Defaults",
+      "tip_clear_body" : "Clears the default colors of each encounter, including on the map if all encounters of that type are colored."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Apply defaults to Act 4",
+      "require_shift_to_save_defaults" : "Require Shift to see Save Default buttons"
+    }
+  }
+}

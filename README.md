@@ -2,7 +2,7 @@
 
 Map Marks is a WIP Slay the Spire mod for map node highlighting. It is a spiritual successor and an attempt to improve upon two previous mods: "Highlight Paths" (by reina - [Steam workshop link](https://steamcommunity.com/sharedfiles/filedetails/?id=1611047977)) and "Better Paths" (the world's worst titled mod by me - [Github link](https://github.com/casey-c/sts_betterpaths)).
 
-This is a fork of casey-c's mod that adds further functionality such as saving the default room type color selections and it can now remember your default initial color.
+This is a fork of casey-c/ojb's mod that adds further functionality such as saving the default room type color selections and it can now remember your default initial color. It also now has autotranslated language support for all languages supported by Slay the Spire.
 
 ![overview](.github/overview.png)
 
@@ -77,6 +77,17 @@ the node to remove any highlights from nodes that cannot path through this targe
 To save defaults: Simply assign a colour to the room type via the legend like normal, then hit the new little Save icon button to save the current set of assigned colours as defaults. Then every time you reload the game, enter a new act or start a new run, those colours will be applied by default. This also works for the initial colour in the colour picker.
 
 ![image](https://github.com/user-attachments/assets/ca0f41bd-fb52-4442-a6dd-2645441e756a)
+
+## Supported Languages
+> :warning: Apart from English, these are autotranslated, please suggest fixes to them at any time! :warning:
+
+| Languages                                  |                                            |                                            |                                            |
+|--------------------------------------------|--------------------------------------------|--------------------------------------------|--------------------------------------------|
+| English                                    | Nederlands (Dutch) | Français (French) | Deutsch (German) |
+| Italiano (Italian)                         | 日本語 (Japanese) | 한국어 (Korean) | Polski (Polish) |
+| Português do Brasil (Brazilian Portuguese) | Русский (Russian) | 简体中文 (Simplified Chinese) | 繁體中文 (Traditional Chinese) |
+| Español (Spanish)                          | ไทย (Thai) | Türkçe (Turkish) | Українська (Ukrainian) |
+| Tiếng Việt (Vietnamese)                    | Esperanto |
 
 ### Known issues
 

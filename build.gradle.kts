@@ -11,7 +11,7 @@ Setup environment variables
       errors if you try and call code that won't exist on the client.
  */
 var stsInstallLocation: String = System.getenv("STS_INSTALL")
-var compileOnlyLibs: String = System.getenv("STS_MODDING_LIB")
+var compileOnlyLibs: String = System.getenv("STS_MAPMARKS_MODDING_LIB")
 
 // Uses the value written in settings.gradle
 var modName: String = rootProject.name

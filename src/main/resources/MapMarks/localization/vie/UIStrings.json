@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Dấu bản đồ: Điều khiển",
+      "tip_body" : "#gNhấp chuột phải vào một nút để bật/tắt đánh dấu. #gNhấp chuột phải+Kéo để bật/tắt nhiều nút cùng lúc. #gNhấp chuột phải vào các mục chú giải để bật/tắt tất cả các loại nhất định. #gNhấp chuột phải vào nút chú giải này để xóa tất cả các đánh dấu. NL NL #pKéo chuột phải ra ngoài các nút để mở menu tròn chọn màu. NL NL #rALT+Nhấp chuột phải để bắt đầu vẽ bằng màu hiện tại. #rALT+Nhấp chuột phải vào nút chú giải này để xóa tất cả các hình vẽ bằng bút. NL NL #bControl+Nhấp chuột phải vào một nút để xóa tất cả các đánh dấu khỏi các nút không thể tiếp cận nó (tức là không có đường dẫn giữa một nút đã được đánh dấu trước đó và mục tiêu hiện tại).",
+      "tip_header_succinct" : "Dấu bản đồ",
+      "tip_body_succinct" : "Giữ #gShift để hiển thị hướng dẫn và điều khiển cho mod này."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Lưu mặc định",
+      "tip_save_body" : "Lưu màu hiện tại của mỗi lần chạm trán làm mặc định nếu cùng màu được áp dụng cho tất cả các lần chạm trán loại đó. Cũng lưu màu được chọn ban đầu.",
+      "tip_clear_header" : "Xóa mặc định",
+      "tip_clear_body" : "Xóa màu mặc định của mỗi lần chạm trán, bao gồm cả trên bản đồ nếu tất cả các lần chạm trán loại đó đều có màu."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Áp dụng mặc định cho Màn 4",
+      "require_shift_to_save_defaults" : "Yêu cầu Shift để xem các nút Lưu mặc định"
+    }
+  }
+}

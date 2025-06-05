@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "지도 마크: 컨트롤",
+      "tip_body" : "#g노드를 마우스 오른쪽 버튼으로 클릭하여 강조 표시를 토글합니다. #g마우스 오른쪽 버튼으로 클릭+드래그하여 여러 노드를 한 번에 토글합니다. #g범례 항목을 마우스 오른쪽 버튼으로 클릭하여 특정 유형의 모든 항목을 토글합니다. #g이 범례 버튼을 마우스 오른쪽 버튼으로 클릭하여 모든 강조 표시를 지웁니다. NL NL #p노드 외부를 마우스 오른쪽 버튼으로 클릭+드래그하여 색상 선택 방사형 메뉴를 엽니다. NL NL #rALT+마우스 오른쪽 버튼으로 클릭하여 현재 색상으로 그리기 시작합니다. #rALT+이 범례 버튼을 마우스 오른쪽 버튼으로 클릭하여 모든 펜 그림을 지웁니다. NL NL #bControl+노드를 마우스 오른쪽 버튼으로 클릭하여 도달할 수 없는 노드(즉, 이전에 강조 표시된 노드와 현재 대상 사이에 경로 없음)의 모든 강조 표시를 지웁니다.",
+      "tip_header_succinct" : "지도 마크",
+      "tip_body_succinct" : "#gShift를 누르고 있으면 이 모드의 지침 및 컨트롤이 표시됩니다."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "기본값 저장",
+      "tip_save_body" : "같은 색상이 해당 유형의 모든 조우에 적용되는 경우 각 조우의 현재 색상을 기본값으로 저장합니다. 초기 선택된 색상도 저장합니다.",
+      "tip_clear_header" : "기본값 지우기",
+      "tip_clear_body" : "해당 유형의 모든 조우가 색칠되어 있는 경우 맵을 포함하여 각 조우의 기본 색상을 지웁니다."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "4막에 기본값 적용",
+      "require_shift_to_save_defaults" : "기본값 저장 버튼을 보려면 Shift를 눌러야 함"
+    }
+  }
+}

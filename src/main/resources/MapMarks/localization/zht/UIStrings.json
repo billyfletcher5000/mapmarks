@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "地圖標記：控制",
+      "tip_body" : "#g右鍵單擊節點以切換其高亮顯示。#g右鍵單擊+拖曳以同時切換多個節點。#g右鍵單擊圖例項以切換所有特定類型。#g右鍵單擊此圖例按鈕以清除所有高亮顯示。NL NL #p在節點外部右鍵單擊+拖曳以打開徑向選單選擇顏色。NL NL #rALT+右鍵單擊以使用目前顏色開始繪製。#rALT+右鍵單擊此圖例按鈕以清除所有筆繪。NL NL #bControl+右鍵單擊節點以清除與其不可達的節點的所有高亮顯示（即，先前高亮顯示的節點與目前目標之間沒有路徑）。",
+      "tip_header_succinct" : "地圖標記",
+      "tip_body_succinct" : "按住#gShift顯示此模組的說明和控制項。"
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "儲存預設設定",
+      "tip_save_body" : "如果將相同的顏色應用於該類型的所有遭遇，則將每次遭遇的目前顏色儲存為預設設定。還儲存最初選擇的顏色。",
+      "tip_clear_header" : "清除預設設定",
+      "tip_clear_body" : "清除每次遭遇的預設顏色，包括地圖上所有該類型遭遇的顏色。"
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "將預設設定應用於第4章",
+      "require_shift_to_save_defaults" : "需要按住Shift鍵才能看到儲存預設設定按鈕"
+    }
+  }
+}

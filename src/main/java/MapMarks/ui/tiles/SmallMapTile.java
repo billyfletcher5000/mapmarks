@@ -20,7 +20,6 @@ public class SmallMapTile extends AbstractWidget<SmallMapTile> {
 
     private LayeredTextureWidget ltw;
 
-//    private Color baseColor = EaselColors.withOpacity(ColorDatabase.DEFAULT_RED, 0.2f);
     private Color baseColor = ColorEnum.RED.get();
     private static final Color trimColor = ColorDatabase.UI_TRIM;
 
@@ -62,9 +61,5 @@ public class SmallMapTile extends AbstractWidget<SmallMapTile> {
     @Override
     protected void renderWidget(SpriteBatch sb) {
         ltw.render(sb);
-
-//        EaselGraphicsHelper.drawDebugRects(sb, this);
-//        if (hb != null)
-//            hb.render(sb);
     }
 }

@@ -1,16 +1,14 @@
 package MapMarks;
 
 import MapMarks.ui.*;
-import MapMarks.utils.ColorEnum;
-import MapMarks.utils.FixedModLabeledToggleButton;
-import MapMarks.utils.MapMarksTextureDatabase;
-import MapMarks.utils.SoundHelper;
+import MapMarks.utils.*;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import basemod.interfaces.AddAudioSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import basemod.interfaces.RenderSubscriber;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,6 +17,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.LegendItem;
 import easel.ui.AnchorPosition;
 import easel.utils.EaselInputHelper;
@@ -39,27 +38,50 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     public static final String modAuthorName = "ojb, billyfletcher5000";
     public static final String modDescription = "Map Marks is a Slay the Spire mod for map node highlighting.";
 
-    // Config
+
+    private static String prefixLocalizationID(String localizationID) { return modId + ":" + localizationID; }
+
+    //region Config
     private static final String configFileName = "Config";
     private static final String InitialColorPropertyName = "InitialColor";
     private static final String RoomTypeToColorPropertyName = "RoomTypeToColor";
     private static final String ApplyDefaultsToAct4PropertyName = "ApplyDefaultsToAct4";
+    private static final String RequireShiftToSeeSaveDefaults = "RequireShiftToSeeSaveDefaults";
     private static SpireConfig modSpireConfig = null;
 
     public static void saveModSpireConfig() throws IOException { modSpireConfig.save(); }
     public static boolean hasInitialColorConfigProperty() { return modSpireConfig.has(InitialColorPropertyName); }
     public static boolean hasRoomTypeToColorConfigProperty() { return modSpireConfig.has(RoomTypeToColorPropertyName); }
     public static boolean hasApplyDefaultsToAct4ConfigProperty() { return modSpireConfig.has(ApplyDefaultsToAct4PropertyName); }
+    public static boolean hasRequireShiftToSeeDefaultsConfigProperty() { return modSpireConfig.has(RequireShiftToSeeSaveDefaults); }
     public static String getInitialColorConfigProperty() { return modSpireConfig.getString(InitialColorPropertyName); }
     public static String getRoomTypeToColorConfigProperty() { return modSpireConfig.getString(RoomTypeToColorPropertyName); }
     public static boolean getApplyDefaultsToAct4ConfigProperty() { return modSpireConfig.getBool(ApplyDefaultsToAct4PropertyName); }
+    public static boolean getRequireShiftToSeeDefaultsConfigProperty() { return modSpireConfig.getBool(RequireShiftToSeeSaveDefaults); }
     public static void setInitialColorConfigProperty(String value) { modSpireConfig.setString(InitialColorPropertyName, value); }
     public static void setRoomTypeToColorConfigProperty(String value) { modSpireConfig.setString(RoomTypeToColorPropertyName, value); }
     public static void setApplyDefaultsToAct4ConfigProperty(boolean value) { modSpireConfig.setBool(ApplyDefaultsToAct4PropertyName, value); }
+    public static void setRequireShiftToSeeSaveDefaults(boolean value) { modSpireConfig.setBool(RequireShiftToSeeSaveDefaults, value); }
     public static void removeInitialColorConfigProperty() { modSpireConfig.remove(InitialColorPropertyName); }
     public static void removeRoomTypeToColorConfigProperty() { modSpireConfig.remove(RoomTypeToColorPropertyName); }
     public static void removeApplyDefaultsToAct4ConfigProperty() { modSpireConfig.remove(ApplyDefaultsToAct4PropertyName); }
-    // ~Config
+    public static void removeRequireShiftToSeeDefaultsConfigProperty() { modSpireConfig.remove(RequireShiftToSeeSaveDefaults); }
+
+
+    public static boolean shouldApplyDefaultsToAct4() {
+        return hasApplyDefaultsToAct4ConfigProperty() && getApplyDefaultsToAct4ConfigProperty();
+    }
+
+    public static boolean doesRequireShiftToSeeSaveDefaults() {
+        return !hasRequireShiftToSeeDefaultsConfigProperty() || getRequireShiftToSeeDefaultsConfigProperty();
+    }
+    //endregion ~Config
+
+    //region Localization
+    public static UIStrings getLegendUIStrings() { return CardCrawlGame.languagePack.getUIString(prefixLocalizationID(LocalizationConstants.Legend.ID)); }
+    public static UIStrings getDefaultsButtonUIStrings() { return CardCrawlGame.languagePack.getUIString(prefixLocalizationID(LocalizationConstants.DefaultsButton.ID)); }
+    public static UIStrings getConfigUIStrings() { return CardCrawlGame.languagePack.getUIString(prefixLocalizationID(LocalizationConstants.Config.ID)); }
+    //endregion ~Localization
 
     private ModPanel settingsPanel;
 
@@ -91,6 +113,7 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     @Override
     public void receivePostInitialize() {
         TextureLoader.loadTextures(MapMarksTextureDatabase.values());
+        initialiseLocalisation();
 
         menu = new RadialMenu();
         legendObject = new LegendObject()
@@ -109,13 +132,15 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
 
         saveDefaultsButton = new DefaultsButton(DefaultsButtonMode.SAVE)
                 .onLeftClick(onClick -> {
-                    MapTileManager.saveDefaults();
+                    if(!doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed())
+                        MapTileManager.saveDefaults();
                 })
                 .anchoredAt(1760, 812, AnchorPosition.LEFT_TOP);
 
         clearDefaultsButton = new DefaultsButton(DefaultsButtonMode.CLEAR)
                 .onLeftClick(onClick -> {
-                    MapTileManager.clearDefaults();
+                    if(!doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed())
+                        MapTileManager.clearDefaults();
                 })
                 .anchoredAt(1790, 812, AnchorPosition.LEFT_TOP);
 
@@ -134,19 +159,47 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     private ModPanel createModPanel() {
         ModPanel panel = new ModPanel();
 
-        boolean applyDefaultsToAct4State = !hasApplyDefaultsToAct4ConfigProperty() || getApplyDefaultsToAct4ConfigProperty();
-        FixedModLabeledToggleButton allPacksModeBtn = new FixedModLabeledToggleButton("Apply defaults to Act 4", 350.0f, 750F, Settings.CREAM_COLOR, FontHelper.charDescFont, applyDefaultsToAct4State, panel, (label) -> {
+        UIStrings uiStrings = getConfigUIStrings();
 
-        }, (button) -> {
-            setApplyDefaultsToAct4ConfigProperty(button.enabled);
-            try {
-                saveModSpireConfig();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        panel.addUIElement(allPacksModeBtn);
+        FixedModLabeledToggleButton applyToAct4Btn = new FixedModLabeledToggleButton(
+                LocalizationHelper.getDictString(uiStrings, LocalizationConstants.Config.ApplyAct4DefaultsLabel),
+                350.0f, 750F,
+                Settings.CREAM_COLOR,
+                FontHelper.charDescFont,
+                shouldApplyDefaultsToAct4(),
+                panel,
+                (label) -> {},
+                (button) -> {
+                    setApplyDefaultsToAct4ConfigProperty(button.enabled);
+                    try {
+                        saveModSpireConfig();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+        panel.addUIElement(applyToAct4Btn);
+
+        FixedModLabeledToggleButton requireShiftDefaultsBtn = new FixedModLabeledToggleButton(
+                LocalizationHelper.getDictString(uiStrings, LocalizationConstants.Config.RequireShiftToSaveDefaultsLabel),
+                350.0f, 700F,
+                Settings.CREAM_COLOR,
+                FontHelper.charDescFont,
+                doesRequireShiftToSeeSaveDefaults(),
+                panel,
+                (label) -> {},
+                (button) -> {
+                    setRequireShiftToSeeSaveDefaults(button.enabled);
+                    try {
+                        saveModSpireConfig();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+        );
+        panel.addUIElement(requireShiftDefaultsBtn);
 
         return panel;
     }
@@ -154,8 +207,6 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     @Override
     public void receiveRender(SpriteBatch sb) {
         menu.render(sb);
-
-//        paintContainer.render(sb);
     }
 
     private boolean rightMouseDown = false;
@@ -286,5 +337,20 @@ public class MapMarks implements PostInitializeSubscriber, PostUpdateSubscriber,
     @Override
     public void receiveAddAudio() {
         BaseMod.addAudio("MAP_MARKS_CLICK", "MapMarks/output_2.wav");
+    }
+
+    private void initialiseLocalisation() {
+        // Fallback
+        loadLocalisation("eng");
+
+        String langKey = Settings.language.toString().toLowerCase();
+        loadLocalisation(langKey);
+    }
+
+    private void loadLocalisation(String langKey) {
+        String filepath = "MapMarks/localization/" + langKey + "/UIStrings.json";
+        if (Gdx.files.internal(filepath).exists()) {
+            BaseMod.loadCustomStringsFile(UIStrings.class, filepath);
+        }
     }
 }

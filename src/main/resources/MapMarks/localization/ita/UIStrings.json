@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Segnalini mappa: Controlli",
+      "tip_body" : "#gClicca con il tasto destro su un nodo per attivare/disattivare la sua evidenziazione. #gClicca con il tasto destro+Trascina per attivare/disattivare molti nodi contemporaneamente. #gClicca con il tasto destro sugli elementi della leggenda per attivare/disattivare tutti quelli di un certo tipo. #gClicca con il tasto destro su questo pulsante della leggenda per cancellare tutte le evidenziazioni. NL NL #pClicca con il tasto destro+Trascina fuori dai nodi per aprire un menu radiale per selezionare il colore. NL NL #rALT+Clicca con il tasto destro per iniziare a disegnare con il colore attuale. #rALT+Clicca con il tasto destro su questo pulsante della leggenda per cancellare tutti i disegni a penna. NL NL #bControl+Clicca con il tasto destro su un nodo per cancellare tutte le evidenziazioni dai nodi irraggiungibili ad esso (cioè nessun percorso tra un nodo precedentemente evidenziato e il bersaglio attuale).",
+      "tip_header_succinct" : "Segnalini mappa",
+      "tip_body_succinct" : "Tieni premuto #gMaiusc per mostrare le istruzioni e i controlli per questa mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Salva predefiniti",
+      "tip_save_body" : "Salva i colori attuali di ogni incontro come predefiniti se lo stesso colore viene applicato a tutti gli incontri di quel tipo. Salva anche il colore inizialmente selezionato.",
+      "tip_clear_header" : "Cancella predefiniti",
+      "tip_clear_body" : "Cancella i colori predefiniti di ogni incontro, anche sulla mappa se tutti gli incontri di quel tipo sono colorati."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Applica predefiniti all'Atto 4",
+      "require_shift_to_save_defaults" : "Richiedi Maiusc per visualizzare i pulsanti Salva predefiniti"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Marcações do Mapa: Controles",
+      "tip_body" : "#gClique com o botão direito em um nó para alternar seu destaque. #gClique com o botão direito+Arraste para alternar muitos nós de uma vez. #gClique com o botão direito nos itens da legenda para alternar todos de um certo tipo. #gClique com o botão direito neste botão da legenda para limpar todos os destaques. NL NL #pClique com o botão direito+Arraste fora dos nós para abrir um menu radial para selecionar a cor. NL NL #rALT+Clique com o botão direito para começar a pintar com a cor atual. #rALT+Clique com o botão direito neste botão da legenda para limpar todos os desenhos à caneta. NL NL #bControl+Clique com o botão direito em um nó para limpar todos os destaques de nós inatingíveis a ele (ou seja, sem caminho entre outro nó previamente destacado e o alvo atual).",
+      "tip_header_succinct" : "Marcações do Mapa",
+      "tip_body_succinct" : "Mantenha #gShift pressionado para mostrar instruções e controles para este mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Salvar Padrões",
+      "tip_save_body" : "Salva as cores atuais de cada encontro como padrões se a mesma cor for aplicada a todos os encontros desse tipo. Também salva a cor inicialmente selecionada.",
+      "tip_clear_header" : "Limpar Padrões",
+      "tip_clear_body" : "Limpa as cores padrão de cada encontro, inclusive no mapa, se todos os encontros desse tipo estiverem coloridos."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Aplicar padrões ao Ato 4",
+      "require_shift_to_save_defaults" : "Exigir Shift para ver os botões de Salvar Padrões"
+    }
+  }
+}

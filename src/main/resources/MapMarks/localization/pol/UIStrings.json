@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Znaczniki mapy: Sterowanie",
+      "tip_body" : "#gPrawym przyciskiem myszy kliknij węzeł, aby przełączyć jego podświetlenie. #gPrawym przyciskiem myszy+Przeciągnij, aby przełączyć wiele węzłów naraz. #gPrawym przyciskiem myszy kliknij elementy legendy, aby przełączyć wszystkie elementy danego typu. #gPrawym przyciskiem myszy kliknij ten przycisk legendy, aby usunąć wszystkie podświetlenia. NL NL #pPrawym przyciskiem myszy+Przeciągnij poza węzłami, aby otworzyć menu promieniowe wyboru koloru. NL NL #rALT+Prawym przyciskiem myszy, aby rozpocząć malowanie bieżącym kolorem. #rALT+Prawym przyciskiem myszy kliknij ten przycisk legendy, aby usunąć wszystkie rysunki piórem. NL NL #bControl+Prawym przyciskiem myszy kliknij węzeł, aby usunąć wszystkie podświetlenia z węzłów dla niego nieosiągalnych (tzn. brak ścieżki między wcześniej podświetlonym węzłem a bieżącym celem).",
+      "tip_header_succinct" : "Znaczniki mapy",
+      "tip_body_succinct" : "Przytrzymaj #gShift, aby wyświetlić instrukcje i sterowanie dla tego modu."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Zapisz domyślne",
+      "tip_save_body" : "Zapisuje bieżące kolory każdego spotkania jako domyślne, jeśli ten sam kolor jest stosowany do wszystkich spotkań tego typu. Zapisuje również początkowo wybrany kolor.",
+      "tip_clear_header" : "Wyczyść domyślne",
+      "tip_clear_body" : "Usuwa domyślne kolory każdego spotkania, w tym na mapie, jeśli wszystkie spotkania tego typu są kolorowe."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Zastosuj domyślne do Aktu 4",
+      "require_shift_to_save_defaults" : "Wymaga Shift, aby zobaczyć przyciski Zapisz domyślne"
+    }
+  }
+}

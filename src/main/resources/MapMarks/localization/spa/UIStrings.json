@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Marcas del mapa: Controles",
+      "tip_body" : "#gHaz clic derecho en un nodo para alternar su resaltado. #gHaz clic derecho+Arrastra para alternar muchos nodos a la vez. #gHaz clic derecho en los elementos de la leyenda para alternar todos los de un cierto tipo. #gHaz clic derecho en este botón de leyenda para borrar todos los resaltados. NL NL #pHaz clic derecho+Arrastra fuera de los nodos para abrir un menú radial para seleccionar el color. NL NL #rALT+Haz clic derecho para empezar a pintar con el color actual. #rALT+Haz clic derecho en este botón de leyenda para borrar todos los dibujos con lápiz. NL NL #bControl+Haz clic derecho en un nodo para borrar todos los resaltados de los nodos inalcanzables para él (es decir, sin ruta entre otro nodo previamente resaltado y el objetivo actual).",
+      "tip_header_succinct" : "Marcas del mapa",
+      "tip_body_succinct" : "Mantén #gShift para mostrar las instrucciones y controles de este mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Guardar valores predeterminados",
+      "tip_save_body" : "Guarda los colores actuales de cada encuentro como valores predeterminados si el mismo color se aplica a todos los encuentros de ese tipo. También guarda el color seleccionado inicialmente.",
+      "tip_clear_header" : "Borrar valores predeterminados",
+      "tip_clear_body" : "Borra los colores predeterminados de cada encuentro, incluso en el mapa si todos los encuentros de ese tipo están coloreados."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Aplicar valores predeterminados al Acto 4",
+      "require_shift_to_save_defaults" : "Requiere Shift para ver los botones de Guardar valores predeterminados"
+    }
+  }
+}
