@@ -74,7 +74,7 @@ the node to remove any highlights from nodes that cannot path through this targe
 
 ### Saving Defaults
 
-To save defaults: Simply assign a colour to the room type via the legend like normal, then hit the new little Save icon button to save the current set of assigned colours as defaults. Then every time you reload the game, enter a new act or start a new run, those colours will be applied by default. This also works for the initial colour in the colour picker.
+To save defaults: Simply assign a colour to the room type via the legend like normal, then ***hold shift*** and hit the new little Save icon button to save the current set of assigned colours as defaults. Then every time you reload the game, enter a new act or start a new run, those colours will be applied by default. This also works for the initial colour in the colour picker. You can also disable requiring the need to hold shift in the mod's config page (Mods on the main menu -> select Map Marks -> select Config), as well as turn it on for Act 4 (this is disabled by default as the route is always fixed).
 
 ![image](https://github.com/user-attachments/assets/ca0f41bd-fb52-4442-a6dd-2645441e756a)
 
