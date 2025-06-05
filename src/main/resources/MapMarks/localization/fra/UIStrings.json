@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Marques de carte : Commandes",
+      "tip_body" : "#gFaites un clic droit sur un nœud pour activer/désactiver sa mise en surbrillance. #gFaites un clic droit + glisser pour activer/désactiver plusieurs nœuds à la fois. #gFaites un clic droit sur les éléments de la légende pour activer/désactiver tous les éléments d'un certain type. #gFaites un clic droit sur ce bouton de légende pour effacer toutes les mises en surbrillance. NL NL #pFaites un clic droit + glisser en dehors des nœuds pour ouvrir un menu radial permettant de sélectionner la couleur. NL NL #rALT+Clic droit pour commencer à peindre avec la couleur actuelle. #rALT+Clic droit sur ce bouton de légende pour effacer tous les dessins au stylo. NL NL #bCTRL+Clic droit sur un nœud pour effacer toutes les mises en surbrillance des nœuds qui lui sont inaccessibles (c'est-à-dire aucun chemin entre un nœud précédemment mis en surbrillance et la cible actuelle).",
+      "tip_header_succinct" : "Marques de carte",
+      "tip_body_succinct" : "Maintenez #gMaj pour afficher les instructions et les commandes de ce mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Enregistrer les paramètres par défaut",
+      "tip_save_body" : "Enregistre les couleurs actuelles de chaque rencontre comme paramètres par défaut si la même couleur est appliquée à toutes les rencontres de ce type. Enregistre également la couleur initialement sélectionnée.",
+      "tip_clear_header" : "Effacer les paramètres par défaut",
+      "tip_clear_body" : "Efface les couleurs par défaut de chaque rencontre, y compris sur la carte si toutes les rencontres de ce type sont colorées."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Appliquer les paramètres par défaut à l'Acte 4",
+      "require_shift_to_save_defaults" : "Nécessite Maj pour afficher les boutons d'enregistrement des paramètres par défaut"
+    }
+  }
+}

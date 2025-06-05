@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Karttamerkit: Säätimet",
+      "tip_body" : "#gNapsauta hiiren oikealla painikkeella solmua vaihtaaksesi sen korostusta. #gNapsauta hiiren oikealla painikkeella+Vedä vaihtaaksesi useita solmuja kerralla. #gNapsauta hiiren oikealla painikkeella selite-kohteita vaihtaaksesi kaikki tietyn tyyppiset. #gNapsauta hiiren oikealla painikkeella tätä selite-painiketta tyhjentääksesi kaikki korostukset. NL NL #pNapsauta hiiren oikealla painikkeella+Vedä solmujen ulkopuolelta avataksesi sädevalikon värin valitsemiseksi. NL NL #rALT+Napsauta hiiren oikealla painikkeella aloittaaksesi piirtämisen nykyisellä värillä. #rALT+Napsauta hiiren oikealla painikkeella tätä selite-painiketta tyhjentääksesi kaikki kynäpiirrokset. NL NL #bControl+Napsauta hiiren oikealla painikkeella solmua tyhjentääksesi kaikki korostukset solmuista, jotka ovat sille saavuttamattomia (eli ei polkua aiemmin korostetun solmun ja nykyisen kohteen välillä).",
+      "tip_header_succinct" : "Karttamerkit",
+      "tip_body_succinct" : "Pidä #gVaihto-näppäintä painettuna näyttääksesi tämän modin ohjeet ja säätimet."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Tallenna oletukset",
+      "tip_save_body" : "Tallentaa kunkin kohtaamisen nykyiset värit oletuksina, jos sama väri on käytössä kaikissa kyseisen tyyppisissä kohtaamisissa. Tallentaa myös alun perin valitun värin.",
+      "tip_clear_header" : "Tyhjennä oletukset",
+      "tip_clear_body" : "Tyhjentää kunkin kohtaamisen oletusvärit, myös kartalla, jos kaikki kyseisen tyyppiset kohtaamiset on väritetty."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Käytä oletuksia näytökseen 4",
+      "require_shift_to_save_defaults" : "Vaatii Vaihto-näppäimen nähdäksesi Tallenna oletukset -painikkeet"
+    }
+  }
+}

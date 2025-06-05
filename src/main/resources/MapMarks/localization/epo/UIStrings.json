@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Mapaj Markoj: Kontroloj",
+      "tip_body" : "#gDekstre alklaku nodon por ŝalti ĝian lumigon. #gDekstre alklaku+Trenu por ŝalti multajn nodojn samtempe. #gDekstre alklaku la legendajn erojn por ŝalti ĉiujn de certa tipo. #gDekstre alklaku ĉi tiun legendan butonon por malplenigi ĉiujn lumigojn. NL NL #pDekstre alklaku+Trenu ekster nodoj por malfermi radialan menuon por elekti la koloron. NL NL #rALT+Dekstre alklaku por komenci pentri per la nuna koloro. #rALT+Dekstre alklaku ĉi tiun legendan butonon por malplenigi ĉiujn penilajn desegnaĵojn. NL NL #bControl+Dekstre alklaku nodon por malplenigi ĉiujn lumigojn de nodoj neatingeblaj al ĝi (t.e. neniu vojo inter antaŭe lumigita nodo kaj la nuna celo).",
+      "tip_header_succinct" : "Mapaj Markoj",
+      "tip_body_succinct" : "Tenu #gShift por montri instrukciojn kaj kontrolojn por ĉi tiu modifo."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Konservi defaŭltojn",
+      "tip_save_body" : "Konservas la aktualajn kolorojn de ĉiu renkonto kiel defaŭltojn se la sama koloro estas aplikata al ĉiuj renkontoj de tiu tipo. Ankaŭ konservas la komence elektitan koloron.",
+      "tip_clear_header" : "Malplenigi defaŭltojn",
+      "tip_clear_body" : "Malplenigas la defaŭltajn kolorojn de ĉiu renkonto, inkluzive sur la mapo se ĉiuj renkontoj de tiu tipo estas koloraj."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Apliki defaŭltojn al Akto 4",
+      "require_shift_to_save_defaults" : "Postulas Shift por vidi la butonojn Konservi Defaŭltojn"
+    }
+  }
+}

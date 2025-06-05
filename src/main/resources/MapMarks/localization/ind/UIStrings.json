@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Tanda Peta: Kontrol",
+      "tip_body" : "#gKlik Kanan pada node untuk mengaktifkan/menonaktifkan sorotan. #gKlik Kanan+Seret untuk mengaktifkan/menonaktifkan banyak node sekaligus. #gKlik Kanan pada item legenda untuk mengaktifkan/menonaktifkan semua jenis tertentu. #gKlik Kanan pada tombol legenda ini untuk menghapus semua sorotan. NL NL #pKlik Kanan+Seret di luar node untuk membuka menu radial untuk memilih warna. NL NL #rALT+Klik Kanan untuk mulai melukis dengan warna saat ini. #rALT+Klik Kanan pada tombol legenda ini untuk menghapus semua gambar pena. NL NL #bControl+Klik Kanan pada node untuk menghapus semua sorotan dari node yang tidak dapat dijangkau olehnya (yaitu tidak ada jalur antara node yang sebelumnya disorot dan target saat ini).",
+      "tip_header_succinct" : "Tanda Peta",
+      "tip_body_succinct" : "Tahan #gShift untuk menampilkan instruksi dan kontrol untuk mod ini."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Simpan Default",
+      "tip_save_body" : "Menyimpan warna saat ini dari setiap encounter sebagai default jika warna yang sama diterapkan ke semua encounter jenis itu. Juga menyimpan warna yang awalnya dipilih.",
+      "tip_clear_header" : "Bersihkan Default",
+      "tip_clear_body" : "Menghapus warna default dari setiap encounter, termasuk di peta jika semua encounter jenis itu diwarnai."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Terapkan default ke Babak 4",
+      "require_shift_to_save_defaults" : "Memerlukan Shift untuk melihat tombol Simpan Default"
+    }
+  }
+}

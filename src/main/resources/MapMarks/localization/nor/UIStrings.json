@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Kartmerker: Kontroller",
+      "tip_body" : "#gHøyreklikk på en node for å veksle markeringen. #gHøyreklikk+Dra for å veksle mange noder samtidig. #gHøyreklikk på legende-elementene for å veksle alle av en bestemt type. #gHøyreklikk på denne legende-knappen for å fjerne alle markeringer. NL NL #pHøyreklikk+Dra utenfor noder for å åpne en radialmeny for å velge farge. NL NL #rALT+Høyreklikk for å begynne å male med gjeldende farge. #rALT+Høyreklikk på denne legende-knappen for å fjerne alle pennedrager. NL NL #bControl+Høyreklikk på en node for å fjerne alle markeringer fra noder som er utilgjengelige for den (dvs. ingen bane mellom en tidligere markert node og det nåværende målet).",
+      "tip_header_succinct" : "Kartmerker",
+      "tip_body_succinct" : "Hold #gShift for å vise instruksjoner og kontroller for denne modden."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Lagre standardinnstillinger",
+      "tip_save_body" : "Lagrer de nåværende fargene for hvert møte som standardinnstillinger hvis samme farge brukes på alle møter av den typen. Lagrer også den opprinnelig valgte fargen.",
+      "tip_clear_header" : "Fjern standardinnstillinger",
+      "tip_clear_body" : "Fjerner standardfargene for hvert møte, inkludert på kartet hvis alle møter av den typen er fargelagt."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Bruk standardinnstillinger på Akt 4",
+      "require_shift_to_save_defaults" : "Krever Shift for å se knappene for Lagre standardinnstillinger"
+    }
+  }
+}

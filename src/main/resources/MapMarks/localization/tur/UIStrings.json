@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Harita İşaretleri: Kontroller",
+      "tip_body" : "#gBir düğümü sağ tıklayarak vurgusunu açın/kapatın. #gSağ tıklayıp sürükleyerek birçok düğümü aynı anda açın/kapatın. #gLejant öğelerini sağ tıklayarak belirli bir türdeki tüm öğeleri açın/kapatın. #gBu lejant düğmesini sağ tıklayarak tüm vurguları temizleyin. NL NL #pDüğümlerin dışına sağ tıklayıp sürükleyerek rengi seçmek için dairesel bir menü açın. NL NL #rALT+Sağ tıklayarak mevcut renkle çizim yapmaya başlayın. #rALT+Bu lejant düğmesini sağ tıklayarak tüm kalem çizimlerini temizleyin. NL NL #bControl+Bir düğümü sağ tıklayarak ona ulaşılamayan düğmelerden (yani, daha önce vurgulanmış bir düğüm ile mevcut hedef arasında yol yok) tüm vurguları temizleyin.",
+      "tip_header_succinct" : "Harita İşaretleri",
+      "tip_body_succinct" : "Bu mod için talimatları ve kontrolleri göstermek için #gShift tuşunu basılı tutun."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Varsayılanları Kaydet",
+      "tip_save_body" : "Aynı renk o türdeki tüm karşılaşmalara uygulanıyorsa, her karşılaşmanın mevcut renklerini varsayılan olarak kaydeder. Ayrıca başlangıçta seçilen rengi de kaydeder.",
+      "tip_clear_header" : "Varsayılanları Temizle",
+      "tip_clear_body" : "O türdeki tüm karşılaşmalar renkliyse, haritadakiler de dahil olmak üzere her karşılaşmanın varsayılan renklerini temizler."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Varsayılanları 4. Perdeye Uygula",
+      "require_shift_to_save_defaults" : "Varsayılanları Kaydet düğmelerini görmek için Shift tuşu gerekli"
+    }
+  }
+}

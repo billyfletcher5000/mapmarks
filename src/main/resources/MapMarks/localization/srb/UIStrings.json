@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Oznake mape: Kontrole",
+      "tip_body" : "#gDesni klik na čvor da biste uključili/isključili njegovo isticanje. #gDesni klik+Prevlačenje da biste uključili/isključili više čvorova odjednom. #gDesni klik na stavke legende da biste uključili/isključili sve određenog tipa. #gDesni klik na ovo dugme legende da biste obrisali sva isticanja. NL NL #pDesni klik+Prevlačenje izvan čvorova da biste otvorili radijalni meni za odabir boje. NL NL #rALT+Desni klik za početak crtanja trenutnom bojom. #rALT+Desni klik na ovo dugme legende da biste obrisali sve crteže olovkom. NL NL #bControl+Desni klik na čvor da biste obrisali sva isticanja sa čvorova koji su mu nedostupni (tj. nema putanje između prethodno istaknutog čvora i trenutne mete).",
+      "tip_header_succinct" : "Oznake mape",
+      "tip_body_succinct" : "Držite #gShift da biste prikazali uputstva i kontrole za ovaj mod."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Sačuvaj podrazumevane vrednosti",
+      "tip_save_body" : "Čuva trenutne boje svakog susreta kao podrazumevane ako se ista boja primenjuje na sve susrete tog tipa. Takođe čuva početno odabranu boju.",
+      "tip_clear_header" : "Obriši podrazumevane vrednosti",
+      "tip_clear_body" : "Briše podrazumevane boje svakog susreta, uključujući na mapi ako su svi susreti tog tipa obojeni."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Primeni podrazumevane vrednosti na čin 4",
+      "require_shift_to_save_defaults" : "Zahteva Shift za prikaz dugmadi za čuvanje podrazumevanih vrednosti"
+    }
+  }
+}

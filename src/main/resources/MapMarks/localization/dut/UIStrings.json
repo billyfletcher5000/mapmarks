@@ -1,0 +1,24 @@
+{
+  "ojb_mapmarks:Legend": {
+    "TEXT_DICT": {
+      "tip_header" : "Kaartmarkeringen: Bediening",
+      "tip_body" : "#gKlik met de rechtermuisknop op een knooppunt om de markering ervan te wisselen. #gKlik met de rechtermuisknop+Slepen om veel knooppunten tegelijk te wisselen. #gKlik met de rechtermuisknop op de legenda-items om alle items van een bepaald type te wisselen. #gKlik met de rechtermuisknop op deze legenda-knop om alle markeringen te wissen. NL NL #pKlik met de rechtermuisknop+Slepen buiten knooppunten om een radiaal menu te openen om de kleur te selecteren. NL NL #rALT+Klik met de rechtermuisknop om te beginnen met schilderen met de huidige kleur. #rALT+Klik met de rechtermuisknop op deze legenda-knop om alle pentekeningen te wissen. NL NL #bControl+Klik met de rechtermuisknop op een knooppunt om alle markeringen te wissen van knooppunten die voor hem onbereikbaar zijn (d.w.z. geen pad tussen een eerder gemarkeerd knooppunt en het huidige doel).",
+      "tip_header_succinct" : "Kaartmarkeringen",
+      "tip_body_succinct" : "Houd #gShift ingedrukt om instructies en bedieningselementen voor deze mod te tonen."
+    }
+  },
+  "ojb_mapmarks:DefaultsButton": {
+    "TEXT_DICT": {
+      "tip_save_header" : "Standaardinstellingen opslaan",
+      "tip_save_body" : "Slaat de huidige kleuren van elke ontmoeting op als standaardinstellingen als dezelfde kleur wordt toegepast op alle ontmoetingen van dat type. Slaat ook de aanvankelijk geselecteerde kleur op.",
+      "tip_clear_header" : "Standaardinstellingen wissen",
+      "tip_clear_body" : "Wist de standaardkleuren van elke ontmoeting, inclusief op de kaart als alle ontmoetingen van dat type gekleurd zijn."
+    }
+  },
+  "ojb_mapmarks:Config": {
+    "TEXT_DICT": {
+      "apply_act_4_defaults_label" : "Standaardinstellingen toepassen op Akte 4",
+      "require_shift_to_save_defaults" : "Shift vereist om de knoppen voor het opslaan van standaardinstellingen te zien"
+    }
+  }
+}
