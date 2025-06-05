@@ -25,5 +25,6 @@ public class LocalizationConstants {
         public static final String ID = "Config";
 
         public static final String ApplyAct4DefaultsLabel = "apply_act_4_defaults_label";
+        public static final String RequireShiftToSaveDefaultsLabel = "require_shift_to_save_defaults";
     }
 }

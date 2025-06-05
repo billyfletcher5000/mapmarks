@@ -17,7 +17,8 @@
   },
   "ojb_mapmarks:Config": {
     "TEXT_DICT": {
-      "apply_act_4_defaults_label" : "Apply defaults to Act 4"
+      "apply_act_4_defaults_label" : "Apply defaults to Act 4",
+      "require_shift_to_save_defaults" : "Require Shift to see Save Default buttons"
     }
   }
 }

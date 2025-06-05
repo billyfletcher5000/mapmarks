@@ -11,6 +11,7 @@ import easel.ui.AbstractWidget;
 import easel.ui.AnchorPosition;
 import easel.ui.InterpolationSpeed;
 import easel.ui.graphics.LayeredTextureWidget;
+import easel.utils.EaselInputHelper;
 
 public class DefaultsButton extends AbstractWidget<DefaultsButton> {
     private static final float WIDTH = 36;
@@ -94,6 +95,7 @@ public class DefaultsButton extends AbstractWidget<DefaultsButton> {
 
     @Override
     protected void renderWidget(SpriteBatch sb) {
-        _ltw.render(sb);
+        if(!MapMarks.doesRequireShiftToSeeSaveDefaults() || EaselInputHelper.isShiftPressed())
+            _ltw.render(sb);
     }
 }

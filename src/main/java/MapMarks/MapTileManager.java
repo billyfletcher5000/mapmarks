@@ -550,7 +550,7 @@ public class MapTileManager {
     }
 
     public static void applyDefaults(boolean isAct4) {
-        if(!isAct4 || !MapMarks.hasApplyDefaultsToAct4ConfigProperty() || MapMarks.getApplyDefaultsToAct4ConfigProperty()) {
+        if(!isAct4 || MapMarks.shouldApplyDefaultsToAct4()) {
             MapMarks.logger.log(Level.INFO, "Applying default room type to color: " + defaultRoomTypeToColor.toString());
 
             for (Map.Entry<RoomType, ColorEnum> entry : defaultRoomTypeToColor.entrySet())
